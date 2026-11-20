@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Học thuật toán</title>
+  <style>
+    :root {
+      --bg: #f6f7f9;
+      --panel: #ffffff;
+      --line: #d6d9de;
+      --ink: #1d2330;
+      --quiet: #5c6475;
+      --accent: #2f6fdb;
+      --sidebar-bg: #5B4BC4;
+      --star-yellow: #FCD34D;
+      --col1-gold: #B45309;
+      --col2-teal: #0F766E;
+      --col3-pink: #DB2777;
+      --done-green: #15803D;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, "Segoe UI", Roboto, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    /* 1. Thanh trên (Mục 8.1) */
+    .topbar {
+      background: var(--panel);
+      border-bottom: 1px solid var(--line);
+      padding: 12px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .brand { font-size: 20px; font-weight: 700; }
+    .btn-login {
+      background: transparent;
+      border: 1px solid var(--line);
+      padding: 8px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      color: var(--ink);
+    }
+
+    .container { max-width: 1140px; margin: 24px auto; padding: 0 20px; }
+
+    /* 2. Khung chào (Mục 8.2) */
+    .welcome-box {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 24px;
+      display: grid;
+      grid-template-columns: 90px 1fr 280px;
+      gap: 24px;
+      align-items: center;
+      margin-bottom: 28px;
+    }
+    .mascot {
+      width: 84px; height: 84px;
+      background: #e0e7ff;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; color: var(--sidebar-bg); font-size: 24px;
+    }
+    .welcome-center h1 { font-size: 26px; font-weight: 700; margin-bottom: 6px; }
+    .welcome-center p { font-size: 18px; color: var(--quiet); margin-bottom: 16px; }
+    .btn-primary {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      font-weight: 700;
+      text-decoration: none;
+      padding: 10px 22px;
+      border-radius: 8px;
+      min-height: 44px;
+      line-height: 24px;
+    }
+    .progress-stats {
+      display: flex; justify-content: space-between;
+      font-size: 16px; color: var(--quiet); margin-bottom: 8px;
+    }
+    .progress-bar {
+      height: 10px; background: var(--line); border-radius: 99px; overflow: hidden; margin-bottom: 10px;
+    }
+    .progress-fill { height: 100%; background: var(--accent); width: 22%; }
+    .badges-text { font-size: 16px; color: var(--quiet); }
+
+    /* 3. Lưới 9 bài học 3x3 (Mục 8.3) */
+    .section-title { font-size: 20px; font-weight: 700; margin-bottom: 16px; }
+    .grid-9 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-top-width: 4px;
+      border-radius: 10px;
+      padding: 16px;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 120px;
+    }
+    .card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.06); }
+    .card.col-1 { border-top-color: var(--col1-gold); }
+    .card.col-2 { border-top-color: var(--col2-teal); }
+    .card.col-3 { border-top-color: var(--col3-pink); }
+    .card.active {
+      border: 2px solid var(--accent);
+      border-top-width: 4px;
+      border-top-color: var(--col2-teal);
+    }
+
+    .card-top { display: flex; justify-content: space-between; font-size: 17px; color: var(--quiet); }
+    .stars { color: var(--star-yellow); letter-spacing: 2px; }
+    .card-title { font-size: 19px; font-weight: 700; margin: 8px 0; }
+    .status-done { font-size: 15px; color: var(--done-green); font-weight: 600; }
+    .status-doing { font-size: 15px; color: var(--accent); font-weight: 600; }
+    .status-todo { font-size: 15px; color: var(--quiet); }
+
+    @media (max-width: 900px) {
+      .welcome-box { grid-template-columns: 1fr; text-align: center; }
+      .mascot { margin: 0 auto; }
+      .grid-9 { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">Học thuật toán</div>
+    <button class="btn-login">Đăng nhập/Tạo tài khoản</button>
+  </header>
+
+  <main class="container">
+    <section class="welcome-box">
+      <div class="mascot">Bi</div>
+      <div class="welcome-center">
+        <h1>Chào Bạn! Hôm nay mình học thuật toán nào?</h1>
+        <p>9 bài, mỗi bài có mô phỏng từng bước và trò chơi nhỏ để luyện tập.</p>
+        <a href="lesson.html" class="btn-primary">Học tiếp</a>
+      </div>
+      <div>
+        <div class="progress-stats">
+          <span>Tiến độ 2/9 bài</span>
+          <span>Chuỗi 3 ngày 🔥</span>
+        </div>
+        <div class="progress-bar"><div class="progress-fill"></div></div>
+        <div class="badges-text">Huy hiệu đã nhận: 2</div>
+      </div>
+    </section>
+
+    <h2 class="section-title">9 bài học</h2>
+    <div class="grid-9" id="lesson-grid"></div>
+  </main>
+
+  <script>
+    const lessons = [
+      { id: 1, title: "Tìm kiếm tuần tự", status: "done", stars: "★★★" },
+      { id: 2, title: "Tìm kiếm nhị phân", status: "done", stars: "★★☆" },
+      { id: 3, title: "Sắp xếp nổi bọt", status: "doing", stars: "☆☆☆" },
+      { id: 4, title: "Sắp xếp chọn", status: "todo", stars: "" },
+      { id: 5, title: "Sắp xếp chèn", status: "todo", stars: "" },
+      { id: 6, title: "Đệ quy cơ bản", status: "todo", stars: "" },
+      { id: 7, title: "Sắp xếp trộn", status: "todo", stars: "" },
+      { id: 8, title: "Sắp xếp nhanh", status: "todo", stars: "" },
+      { id: 9, title: "Ngăn xếp và Hàng đợi", status: "todo", stars: "" }
+    ];
+
+    const grid = document.getElementById("lesson-grid");
+    lessons.forEach((item, index) => {
+      const colClass = `col-${(index % 3) + 1}`;
+      const activeClass = item.status === "doing" ? "active" : "";
+      const statusMap = {
+        done: `<span class="status-done">Đã học</span>`,
+        doing: `<span class="status-doing">Đang học</span>`,
+        todo: `<span class="status-todo">Chưa học</span>`
+      };
+      grid.innerHTML += `
+        <a href="lesson.html?bai=${item.id}" class="card ${colClass} ${activeClass}">
+          <div class="card-top">
+            <span>Bài ${item.id}</span>
+            <span class="stars">${item.stars}</span>
+          </div>
+          <div class="card-title">${item.title}</div>
+          <div>${statusMap[item.status]}</div>
+        </a>
+      `;
+    });
+  </script>
+</body>
+</html>
